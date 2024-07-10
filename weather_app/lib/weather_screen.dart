@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:weather_app/additional_info_item.dart';
+import 'package:weather_app/hourely_forecast_item.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -46,7 +47,7 @@ class WeatherScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            '300° F',
+                            '300 K',
                             style: TextStyle(
                                 fontSize: 32, fontWeight: FontWeight.bold),
                           ),
@@ -88,86 +89,65 @@ class WeatherScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
-                  HourlyForecastItem(),
+                  HourlyForecastItem(
+                    time: '00:00',
+                    icon: Icons.cloud,
+                    tempature: '301.22',
+                  ),
+                  HourlyForecastItem(
+                    time: '03:00',
+                    icon: Icons.sunny,
+                    tempature: '300.22',
+                  ),
+                  HourlyForecastItem(
+                    time: '09:00',
+                    icon: Icons.cloud,
+                    tempature: '321.22',
+                  ),
+                  HourlyForecastItem(
+                    time: '09:00',
+                    icon: Icons.cloud,
+                    tempature: '311.22',
+                  ),
+                  HourlyForecastItem(
+                    time: '12:00',
+                    icon: Icons.sunny,
+                    tempature: '315.22',
+                  ),
                 ],
               ),
             ),
             //addittion info card
-            SizedBox(height: 16,),
+            const SizedBox(
+              height: 16,
+            ),
 
-              const Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Additional Information',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 16,),
-             const Row( 
-              children: [ 
-                Column( 
-                  children: [ 
-                    Icon(Icons.water_drop, 
-                    size: 32,
-                    ),
-                     SizedBox(height: 8,),
-                     Text('Humidity'),
-                     SizedBox(height: 8,),
-                     Text('92', 
-                     style: TextStyle( 
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                     ),
-                     )
-                  
-                  ],
-                )
+            const SizedBox(
+              height: 16,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                AdditonalInfoItem(
+                  icon: Icons.water_drop,
+                  label: 'Humidity',
+                  value: '92',
+                ),
+                AdditonalInfoItem(
+                    icon: Icons.air, label: 'Wind Speed', value: '7.5'),
+                AdditonalInfoItem(
+                  icon: Icons.beach_access,
+                  label: 'Pressure',
+                  value: '1000',
+                ),
               ],
-             )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// container doesn't have elevation property, so we used card
-
-class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 6,
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        width: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Column(
-          children: [
-            Text(
-              '03:00',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Icon(
-              Icons.cloud,
-              size: 32,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '320.12',
             )
           ],
         ),
@@ -175,3 +155,6 @@ class HourlyForecastItem extends StatelessWidget {
     );
   }
 }
+
+
+// container doesn't have elevation property, so we used card
